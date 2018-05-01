@@ -49,7 +49,8 @@ ui <- dashboardPage(
       id = "menu", 
       menuItem("Home", tabName = 'home', icon = icon('home')),
       menuItem("Information", tabName = 'info', icon = icon('info-circle')),
-      menuItem("Monitoring", tabName = 'monitoring', icon = icon('binoculars'),badgeLabel = "new", badgeColor = "green"),
+      menuItem("Monitoring", tabName = 'monitoring', icon = icon('binoculars')),
+      menuItem("Recent Blooms", tabName = 'blooms', icon = icon('map-marker'),badgeLabel = "new", badgeColor = "green"),
       menuItem("Report a bloom", tabName='report', icon = icon('bullhorn')),
       menuItem("Tool box", tabName = 'toolbox', icon=icon('wrench'))
     )
@@ -79,19 +80,19 @@ ui <- dashboardPage(
                     status = 'primary',
                     solidHeader = T,
                     tags$strong(style = 'text-align:center;','California Freshwater HAB Reports'),tags$br(),'View an interactive map of recently reported freshwater HABs statewide.',tags$br(),tags$br(),
-                    tags$img(style = 'height: 500px; width: 400px; display: block; margin-left: auto; margin-right:auto;',src="map_events.jpg")),
+                    tags$img(style = 'max-width: 100%; width: 100%; height: auto; height: 500px; width: 400px; display: block; margin-left: auto; margin-right:auto;',src="map_events.jpg")),
                 box(width=4,
                     height = 600,
                     status = 'primary',
                     solidHeader = T,
                     tags$strong('California Marine HABs'),tags$br(),'Check out tons of information on ocean HABs statewide including an interactive map of recently reported marine HABs and the most recent incidents involving saltwater HABs.',tags$br(),
-                    tags$img(style='height: 500px; width: 400px; display: block; margin-left: auto; margin-right:auto;',src='CAhab.jpg')),
+                    tags$img(style='max-width: 100%; width: 100%; height: auto;height: 500px; width: 400px; display: block; margin-left: auto; margin-right:auto;',src='CAhab.jpg')),
                 box(width=4,
                     height = 600,
                     status = 'primary',
                     solidHeader = T,
                     tags$strong('Observing Freshwater HABs using Satellites'),tags$br(),'View an interactive map of HABs in large California water bodies using satellite imagery.',tags$br(),
-                    tags$img(style='height: 500px; width: 400px; display: block; margin-left: auto; margin-right:auto;', src='map_satellite_tuc.png'))
+                    tags$img(style='max-width: 100%; width: 100%; height: auto;height: 500px; width: 400px; display: block; margin-left: auto; margin-right:auto;', src='map_satellite_tuc.png'))
                 )#close row
               ),#close tabItem,
       tabItem(tabName = 'info',
@@ -131,7 +132,8 @@ ui <- dashboardPage(
                    )#close column
           )#close row
       ),#close info tab
-      tabItem(tabName = 'monitoring',
+      tabItem(tabName = 'monitoring'),
+      tabItem(tabName = 'blooms',
               fluidRow(
                 box(
         status = 'danger', width = 12, solidHeader = T, title = "DISCLAIMER", "This map shows voluntarily reported HAB events and is for general information purposes ", tags$strong('only')," and may contain errors. The exact location, extent and toxicity of the reported bloom may not be accurate and may not affect the entire waterbody. Due to monetary constraints not all water bodies are monitored on a regular basis so no advisory does not mean no HAB is present. The data are subject to change as new information is received. Please check back as blooms are updated daily."),
@@ -146,6 +148,17 @@ ui <- dashboardPage(
             ),#close column1
       
       column(width = 3,
+             box(width = NULL,
+                 status = 'warning', title = "Directions",
+               "Click on a point to get information about each bloom.",
+               tags$br(),tags$br(),
+               "Use the inputs above to narrow your selection by date and/or county.",
+               tags$br(),tags$br(),
+               "Click the 'Data' tab above the map to see more information about the current selection of HABs.",
+               tags$br(),tags$br(),
+               "Click the 'Download data' button to download the data for your selection of HABs.",
+               tags$br(),tags$br(),
+               tags$a("What do these advisories mean?",href='http://www.mywaterquality.ca.gov/habs/resources/index.html#recreational')), #close box
              box(width = NULL,
                  solidHeader = T, status = 'primary', title = 'Inputs',
                  div(style='text-align:left;padding: 15px',
@@ -164,22 +177,10 @@ ui <- dashboardPage(
                  ),
                  div(style='text-align:left;padding: 15px',
                      downloadButton('button','Download data')) #adds download button
-             ),#closes box
-             
-             box(width = NULL,
-                 status = 'warning', title = "Directions",
-               "Click on a point to get information about each bloom.",
-               tags$br(),tags$br(),
-               "Use the inputs above to narrow your selection by date and/or county.",
-               tags$br(),tags$br(),
-               "Click the 'Data' tab above the map to see more information about the current selection of HABs.",
-               tags$br(),tags$br(),
-               "Click the 'Download data' button to download the data for your selection of HABs.",
-               tags$br(),tags$br(),
-               tags$a("What do these advisories mean?",href='http://www.mywaterquality.ca.gov/habs/resources/index.html#recreational')) #close box
+             )#closes box
         )#close column2
        )#close row1
-     ),#close monitoring tab
+     ),#close blooms tab
      tabItem(tabName = 'report',
              fluidRow(
                infoBox(width=4,"Call",HTML(paste('1 (916) 341 - 5357', tags$br(),'Toll free: 1 (844) 729 - 6466')) , 
@@ -208,7 +209,7 @@ ui <- dashboardPage(
                title = 'How do I know it is a HAB?',
                tabPanel(
                  "ID Guides",
-                 tags$style(HTML("img{padding:30px;")),
+                 div(style = (HTML("img{padding:30px;"))),
                  a(img(src='HABid.png',width = 250, height = 300, desc = "SWAMP Guide"), href='http://www.ccamp.net/Swamp/images/3/33/SOP-Visual_Guide_to_Observing_Blooms.pdf'),
                  a(href = 'https://pubs.usgs.gov/of/2015/1164/ofr20151164.pdf',img(src='usgsHABguide.png',width = 250, height = 300)),
                  a(img(src='ohio.png',width = 250, height = 300), href = 'http://epa.ohio.gov/portals/28/Documents/HAB/BloomCharacterizationGuide-DRAFT.pdf'),
@@ -217,7 +218,7 @@ ui <- dashboardPage(
                ),#close guides tab
                tabPanel(
                  "Algae Keys",
-                 tags$style(HTML("img{padding:30px;")),
+                 div(style = HTML("img{padding:30px;")),
                  a(img(src='phycokey.png', width = 250, height= 300),href='http://cfb.unh.edu/phycokey/phycokey.htm'
                ),
                a(img(src='ca-algae-key.png',width=250, height=300),href='http://dbmuseblade.colorado.edu/DiatomTwo/sbsac_site/key.html')
