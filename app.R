@@ -60,6 +60,14 @@ ui <- dashboardPage(
     tabItems(
       tabItem(tabName = 'home',
               fluidRow(
+                box(
+                  status = 'primary',
+                  solidHeader = T,
+                  title = "Welcome to the FHAB Portal!",
+                  ''
+                )
+              ),
+              fluidRow(
                 valueBox(width=4,"Information","What is a HAB?", 
                          icon = icon('question'), href = 'http://www.mywaterquality.ca.gov/habs/what/index.html'),
                 valueBox(width=4, "Report a bloom!","Have you seen a bloom?",
@@ -79,7 +87,7 @@ ui <- dashboardPage(
                     height = 600,
                     status = 'primary',
                     solidHeader = T,
-                    tags$strong(style = 'text-align:center;','California Freshwater HAB Reports'),tags$br(),'View an interactive map of recently reported freshwater HABs statewide.',tags$br(),tags$br(),
+                    tags$strong(style = 'text-align:center;','California Inland Freshwater HAB Reports'),tags$br(),'View an interactive map of recently reported inland freshwater HABs statewide.',tags$br(),tags$br(),
                     tags$img(style = 'max-width: 100%; width: 100%; height: auto; height: 500px; width: 400px; display: block; margin-left: auto; margin-right:auto;',src="map_events.jpg")),
                 box(width=4,
                     height = 600,
@@ -97,40 +105,53 @@ ui <- dashboardPage(
               ),#close tabItem,
       tabItem(tabName = 'info',
               fluidRow(
-                column(width = 7,
-              box(title = "What are HABs?", 
-                  width = NULL,
+              box(title = "What are cyanobacteria and harmful algal blooms?", 
+                  width = 7,
                   collapsible = T,
                   solidHeader = T,status = 'success',
                   tags$img(style = 'float: left;margin-right:15px;', 
                            src='hab1.jpg',
-                           "At the base of the food chain in fresh, brackish, and marine systems are photosynthetic cyanobacteria and algae. Both single-celled microscopic and larger multicellular forms exist. When conditions are optimal, including light and temperature, levels of nutrients, and lack of water turbulence, cyanobacteria and some algae can quickly multiply into a harmful algal bloom (HAB). Some cyanobacteria and harmful algae can produce toxic chemicals, including cyanotoxins, domoic acid, and other algal toxins.", tags$br(),tags$br(),"Cyanobacteria and algae are present in most freshwater and marine aquatic ecosystems, and perform many roles that are vital for ecosystem health. Cyanobacteria and algae provide organic matter and energy to higher trophic levels, such as aquatic insects and fish.")),
-              box(title = "Why should I be concerned?", 
-                  width = NULL,
+                           "Cyanobacteria (also known as blue-green algae) and algae occur in freshwater and estuarine waterbodies. Algae and cyanobacteria have been around for billions of years and are natural components of ecosystems. They perform many roles that are vital to our aquatic communities, by being a food source and producing oxygen. However, when certain conditions are favorable for these organisms, algae and cyanobacteria can rapidly grow causing “blooms.” ", tags$br(),tags$br(),"Algae and cyanobacteria can produce harmful compounds, such as toxins and taste and odor compounds, that cause health risks to humans and animals. When blooms pose a risk to humans, animals, and the environment, they are referred to as harmful algal blooms (HABs).")),
+              box(width=5,
+                       status = 'success',
+                       h3("How do I know if there is a HAB in the water?"),
+                  'Sometimes the bloom is easily visible, forming a “scum” or discoloration on the water surface. Other times, it is less visible, floating beneath the surface or on the bottom of a water body (benthic). Blooms can appear green, blue, yellow, red, or brown. Cyanotoxins, produced by cyanobacteria, cannot be visually detected in water or tissues.  Several guidance documents are available to aid identification of algae and cyanobacteria (Fact Sheet & Visual Guide), and the California Freshwater HAB Field Guide is available to assist in monitoring.'),
+              box(title = "What are the possible health concerns of HABs?", 
+                  width = 7,
                   collapsible = T,
                   solidHeader = T,
                   status = 'warning',
                   tags$img(style = 'float: left;margin-right:15px;', 
                            src='dead_fish.jpg',
-                           'Cyanobacteria and harmful algal blooms (HABs) can have negative impacts on the environment, people, pets, wildlife, or livestock, as well as the economy. Some HABs can produce large amounts of cyanotoxins or algal toxins, which can poison livestock, wildlife, and humans. Certain other types of cyanobacteria are nontoxic but can impart an unpleasant taste to water and fish as well as giving off an unpleasant smell as they die and decay. Cyanotoxins and algal toxins pose risks to the health and safety of people and pets recreating in water bodies, eating fish, and drinking water. They can accumulate in fish and shellfish to levels posing threats to people and wildlife consumers.',tags$br(), tags$br(),'The most researched group of freshwater HABs is cyanobacteria, or blue-green algae. These are problematic because they can impede recreational and beneficial uses of waterbodies by reducing aesthetics, lowering dissolved oxygen concentration, causing taste and odor problems in drinking water, and producing potent cyanotoxins, associated with illness and mortality in people, pets, livestock, and wildlife. Cyanobacteria blooms and their associated toxins have increased globally in geographic distribution, frequency, duration, and severity. Non-cyanobacteria HAB events have also increased, the most common of which is the golden haptophyte alga, which has caused fish kills in the east, mid-west and southern states, and Southern California.', tags$br(), tags$br(),tags$a('What to know more?', href='https://www.cdc.gov/habs/pdf/habsphysician_card.pdf'))),
-              box(title = "Where do they come from?",
-                  width = NULL,
+                           'Cyanotoxins and algal toxins pose risks to the health and safety of people and pets, drinking water, and recreating in water bodies affected by blooms. They can also accumulate in fish and shellfish to levels posing threats to people and wildlife. Symptoms of HAB-related illness in people and animals are available from the Centers for Disease Control and Prevention (CDC), and by contacting the California Poison Control Center (1-800-222-1222). ',tags$br(), tags$br(),'Of the reported HAB-related incidents in 2017, there were 25 domestic animal deaths, numerous fish and wildlife, and 8 human incidents of illness.', tags$br(), tags$br(),tags$a('What to know more?', href='https://www.cdc.gov/habs/pdf/habsphysician_card.pdf'))),
+              box(width =5,
+                       status = 'warning',
+                       h3("Can animals be affected?"),
+              'Pets, especially dogs, are susceptible to HABs because they swallow more water while swimming and playing in the water. They are also less deterred by green, smelly water that may contain HABs. Animals can experience symptoms within minutes of exposure to the toxins. These symptoms include vomiting, diarrhea, weakness, difficulty breathing, and seizures. In the worst cases, animals have died. ',strong('If your pet experiences these symptoms after exposure, contact your veterinarian immediately. '),'A veterinarian fact sheet and an outreach letter to veterinarians are available.'),
+              box(title = "What causes HABs?",
+                  width = 7,
                   collapsible = T,
                   solidHeader = T,
                   status = 'primary',
                   tags$img(style = 'float: left;margin-right:15px;',
                            src = 'hab2.jpg',
-                           "There are a large number of environmental factors that have been linked to bloom increases and toxin production. These include climate change, nutrient over-enrichment (nitrogen and phosphorus), higher temperatures, salinity, water residence time (stagnation), vertical lake stratification, organic matter enrichment, and high pH (more alkaline)."))
-            ),#close column
-            column(width=5,
-                   box(width=NULL,
-                       status = 'success',
-                       h3("How to be safe")),
-                   box(width = NULL,
-                       status = 'primary',
-                       h3("What are we doing to help?"))
-                   )#close column
-          )#close row
+                           "Increased inputs of nutrients like nitrogen and phosphorous (from fertilizers and human or animal wastes), promote cyanobacterial growth and can lead to increased occurrences of HABs. Low flows, stagnant water, increased intensity and duration of sunlight, and sustained high temperatures create the ideal conditions for HABs. Current research suggests that the rising temperatures and changing precipitation patterns caused by climate change are a catalyst for their growth.")),
+              box(width =5,
+                  status = 'primary',
+                  h3("What guidelines does California use for HABs?"),'Currently, there are no federal or state regulatory standards for cyanotoxins in recreational waters or drinking water. Participating state agencies have developed suggested guidelines for addressing health concerns for cyanotoxins in recreational waters. The Department of Public Health, county health departments, and water body managers are encouraged to use this guidance for posting water bodies when HABs pose a health threat. Guidance is also available for addressing cyanotoxins in drinking water.'),
+              box(title = 'Where and when are HABs occurring in CA?',
+                  width = 7,
+                  status = 'info',
+                  solidHeader = T,
+                  collapsible = T,'Voluntarily reported HABs are posted on the HAB Reports Map. In recent years, HABs have been increasing in incidence, duration, and toxicity statewide, and as a result, human, domestic animal (dogs and livestock, in particular), and wildlife health impacts are on the rise. In 2017, almost 200 HABs were reported in drinking water and recreational water bodies; a two-fold increase from 2016. In some areas, the duration of HABs are increasing from predominantly summer blooms to year-round blooms in some areas. '),
+              box(width = 5,
+                  status = 'info',
+                  h3('What can I do?'),
+                  tags$li('Report any suspected HAB or potential HAB-related illness.'),
+                  tags$li('Practice Healthy Water Habits at your local lake, river, or stream!'),
+                  tags$li(tags$a(href = 'https://www.epa.gov/nutrientpollution/what-you-can-do', 'Help reduce nutrients in in your local lake, rivers, and streams by modifying some daily activities.'))
+              )#close box
+          )#close Fluidrow
       ),#close info tab
       tabItem(tabName = 'monitoring'),
       tabItem(tabName = 'blooms',
@@ -270,20 +291,7 @@ server <- function(input, output, session){
     }
   )#produces download button
   
-  output$map <- renderLeaflet({
-    leaflet(options = leafletOptions(minZoom = 6)) %>% 
-      addProviderTiles(providers$CartoDB.Positron) %>%
-      setView(lng = mean(habdat$lng), 
-              lat = mean(habdat$lat), 
-              zoom = 6) %>%
-      setMaxBounds(lng1 = -130.3933357,
-                   lat1 = 43.108951,
-                   lng2 = -109.729128,
-                   lat2 = 32.144795)
-  })
-  
-  
-  #Set up content for popups 
+ #Set up content for popups 
   popup <- function(name, lng, lat){
     selectedwater <- habdat[habdat$`Waterbody Name` == name,]#Tell app what record to find
     content <- as.character(tagList(
@@ -302,8 +310,20 @@ server <- function(input, output, session){
       sprintf(as.character(selectedwater$`Rec Land Manager`))
     ))
     leafletProxy('map', data = newdat()) %>% addPopups(lng = lng,lat = lat, content)
-  }
-    
+  }  
+  
+  output$map <- renderLeaflet({
+    leaflet(options = leafletOptions(minZoom = 6)) %>% 
+      addProviderTiles(providers$CartoDB.Positron) %>%
+      setView(lng = mean(habdat$lng), 
+              lat = mean(habdat$lat), 
+              zoom = 6) %>%
+      setMaxBounds(lng1 = -130.3933357,
+                   lat1 = 43.108951,
+                   lng2 = -109.729128,
+                   lat2 = 32.144795)
+  })
+  
   #Attempt to have points on map show up when map rendered and not with inputs
   #from https://github.com/rstudio/leaflet/issues/242
  #outputOptions(output, 'map', suspendWhenHidden = F) 
